@@ -10,7 +10,7 @@ package org.kodluyoruz;
  *
  * TODO Bu 2 özellik ve bunların metotları için gereken kodları bu sınıfın içine yazın
  */
-public class RAM
+public class RAM extends Hardware
 {
 
     /*
@@ -18,5 +18,37 @@ public class RAM
      * Eğer RAM'in frekansı 3600 MHz'den fazlaysa, her 400 MHz için fiyatı 200 TL artar.
      * TODO buna göre Hardware sınıfındaki fiyat hesaplayan metodu bu sınıfta yeniden yazın
      */
+    private int memory;
+    private int frequency;
 
+    public int getMemory() {
+        return memory;
+    }
+
+    public void setMemory(int memory) {
+        this.memory = memory;
+    }
+
+    public int getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
+    }
+
+    @Override
+    public double calculatePrice() {
+        if (memory>16)
+        {
+            int sonuc=(int)((memory-16)/4);
+            price+=(sonuc*100);
+        }
+        if (frequency>=3600)
+        {
+            int sonuc=(int)((frequency-3600)/400);
+            price+=(sonuc*200);
+        }
+        return price;
+    }
 }
